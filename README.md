@@ -1,3 +1,3 @@
 # Blog-Post
 
-*. Django project on blog post
+* Django project on blog post
