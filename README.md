@@ -10,20 +10,20 @@
 
 * Add a bootstrap and js content to base.html page.
 
-* extend the base.html page content to other html pages.
+* Extend the base.html page content to other html pages.
 
-* create a view for home and about page in views.py file.
+* Create a view for home and about page in views.py file.
 
 * Add a url mapping for home and about page in urls.py file.
 
-* create a css file in static folder and load the static files in html pages.
+* Create a css file in static folder and load the static files in html pages.
 
 * Run the server and make sure evrything working fine.
 
 * Run a migrations to cretae auth_user table.
 
-* create a super user using python manage.py createsuperuser
+* Create a super user using python manage.py createsuperuser
 
-* verify admin page is working or not.
+* Verify admin page is working or not.
 
-* create a Post model in models.py file and make migrations.
+* Create a Post model in models.py file and make migrations.
