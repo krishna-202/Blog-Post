@@ -27,3 +27,15 @@
 * Verify admin page is working or not.
 
 * Create a Post model in models.py file and make migrations.
+
+* Create a users app and create a register,login,logout views.
+
+* For registration create a custom registration form inherting the inbuilt UserCreationForm.
+
+* For login and logout import a inbuilt class based Login and Logout views.
+
+* Install a crispy forms and mention crispy_forms in installed apps.
+
+* Mention CRISPY_TEMPLATE_PACK='bootstrap4' in settings.py file.
+
+* Add a LOGIN_REDIRECT_URL in settings.py file.
