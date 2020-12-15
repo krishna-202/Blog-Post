@@ -68,3 +68,42 @@
   </div>
 {% endblock %}
 ```
+
+* We have add media root to url patterns only when it is in DEBUG mode.
+
+```
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+```
+
+* For every new user created they should automatically get user profile which will include default profile pic
+
+* Inside users app create signals.py file.
+
+* we should get a post_save signal when user gets created.
+
+* User model is the sender and also we need receiver to perform task.
+```
+from django.dispatch import receiver
+```
+
+* For creating profile
+```
+@receiver(post_save,sender=User)
+def create_profile(sender,instance,created,**kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+```
+* For saving the profile
+```
+
+@receiver(post_save,sender=User)
+def save_profile(sender,instance,**kwargs):
+    instance.profile.save()
+```
+
+* In apps.py file create a ready method
+```
+def ready(self):
+        import users.signals
+```
