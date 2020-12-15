@@ -107,3 +107,9 @@ def save_profile(sender,instance,**kwargs):
 def ready(self):
         import users.signals
 ```
+
+* Let's create a ListView and Detail View for the post model.
+
+* By default list view expects a app_name/post_list.html template,post_list as context object name and detail view expects a app_name/post_detail.html template, post or object as context object name.
+
+*
