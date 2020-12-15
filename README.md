@@ -39,3 +39,32 @@
 * Mention CRISPY_TEMPLATE_PACK='bootstrap4' in settings.py file.
 
 * Add a LOGIN_REDIRECT_URL in settings.py file.
+
+* Create a Profile model with one field as user which has one to one relationship with django User model and another field as profile pic.
+
+* Media root and Media url settings are added in settings.py file.
+
+* Profile view is added in views.py file with login decorator.
+
+* Note: We will access image based on URL(user.profile.image.url).
+
+* MEDIA_ROOT (media folder) is the directory where the uploaded files are stored. For performance reason we store the images in file system not on database.
+
+* MEDIA_URL is te way how we access the media files through browser.For ex: /media/profile_pic/default.jpg.
+
+* Through user.profile.image.url we can access image in profile.html.
+
+```
+{% block content %}
+  <div class="content-section">
+  <div class="media">
+    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+    <div class="media-body">
+      <h2 class="account-heading">{{ user.username }}</h2>
+      <p class="text-secondary">{{ user.email }}</p>
+    </div>
+  </div>
+  <!-- FORM HERE -->
+  </div>
+{% endblock %}
+```
