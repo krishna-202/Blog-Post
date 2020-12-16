@@ -134,3 +134,44 @@ def test_func(self):
 
 ## Paginator
 
+* from django.core.paginator import Paginator
+```
+posts=['1','2','3','4','5']
+p=Paginator(posts,2)
+p.num_pages
+o/p 3
+```
+* In above code (posts,2) 2 indicates 2 posts per page..so 3 will be number of pages.
+
+```
+for page in p.page_range:
+  print(page)
+  
+p1=p.page(1)
+p1.number   o/p is 1
+```
+* To see ow many posts are there in that page
+```
+p1.object_list
+o/p ['1','2']
+
+p1.has_previous()
+o/p false
+
+p.has_next()
+o/p true
+
+p1.next_page_number()
+o/p is 2
+
+```
+
+* Add paginate_by attribute in PostListView.
+
+* We can navigate to different page number. Url should be localhost:8000/?page=n where n is the page number you want to navigate.
+
+* 
+
+
+
+
