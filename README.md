@@ -108,8 +108,29 @@ def ready(self):
         import users.signals
 ```
 
-* Let's create a ListView and Detail View for the post model.
+* Create a ListView and Detail View for the post model.
 
 * By default list view expects a app_name/post_list.html template,post_list as context object name and detail view expects a app_name/post_detail.html template, post or object as context object name.
 
-*
+* Add CreateView in views.py file and author will be set to current logged in user. This is done by form valid method.
+```
+def form_valid(self,form):
+  form.instance.author=self.request.user
+  return super().form_valid(form)
+```
+  
+* Inherit LoginRequiredMixins for CreateView which indicates one should login for creating post.
+
+* Add PostUpdateView with LoginRequiredMixins inherited and also inherit userPassesTestMixin with test_func method which makes sure that only author of respected post can edit.
+```
+def test_func(self):
+  post=self.get_object()
+  if self.request.user == post.author:
+    return True
+  return False
+```
+
+* Add a PostDeleteView with LoginRequiredMixin,UserPassesTestMixin and add a success_url once post gets deleted.
+
+## Paginator
+
