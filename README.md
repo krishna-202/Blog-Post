@@ -170,8 +170,46 @@ o/p is 2
 
 * We can navigate to different page number. Url should be localhost:8000/?page=n where n is the page number you want to navigate.
 
-* 
+* Go to home.html and create a template for page numbers.
 
+* If page_obj has previous page then build a navigation page for very first page and previous page.
+```
+{% if is_paginated %}
+  {% if page_obj.has_previous %}
+    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+  {% endif %}
+  ```
+  
+* Add 3 preceeding and follwing navigation pages to the current page.
+```
+% for num in page_obj.paginator.page_range %}
+    {% if page_obj.number == num %}
+      <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% endif %}
+  {% endfor %}
+  ```
+  
+  * If page_obj has next page then build a navigation page for very last page and next page.
+  
+  * Build a UserPostListView in views.py file which lists out all the posts with respect to users.
+ ```
+ class UserPostListView(ListView):
+    model=Post
+    template_name='blog/user_posts.html'
+    context_object_name='posts'
+    paginate_by=5
+
+    def get_queryset(self):
+        user=get_object_or_404(User,username=self.kwargs.get('username'))
+        return Post.objects.filter(author=user).order_by('-date_posted')
+```
+
+* Create a template and url mapping for UserPostListView.
+
+* 
 
 
 
